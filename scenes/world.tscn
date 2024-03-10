@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5e66h1lmbkyg"]
+
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_256xi"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_256xi")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
