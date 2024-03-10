@@ -6,3 +6,6 @@
 script = ExtResource("1_256xi")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
