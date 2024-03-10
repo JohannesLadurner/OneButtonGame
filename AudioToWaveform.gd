@@ -49,6 +49,7 @@ func generate(stream: AudioStreamWAV, points_per_second: int = 100, max_height: 
 	var sample_i = 0
 	var final_sample_i = (reduced_data_size - samples_per_pixel)
 	var data_heights = []
+	var index = 0
 	while sample_i < final_sample_i:
 		var min_val := 128
 		var max_val := 128
@@ -75,8 +76,9 @@ func generate(stream: AudioStreamWAV, points_per_second: int = 100, max_height: 
 			floor(max_height - (max_val*height_factor)),
 			0, max_height-1
 		))
-		
-		print(str(height1, ", ", height2))
 		data_heights.push_back(abs(height1 - height2))
+		if index >= 2:
+			data_heights[index-1] = floor((data_heights[index-2] + data_heights[index])/2)
+		index += 1
 		
 	return data_heights
