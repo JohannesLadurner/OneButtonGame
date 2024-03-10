@@ -9,3 +9,4 @@ script = ExtResource("1_256xi")
 autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
