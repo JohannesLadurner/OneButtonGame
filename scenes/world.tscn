@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5e66h1lmbkyg"]
+[gd_scene load_steps=3 format=3 uid="uid://b5e66h1lmbkyg"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_256xi"]
+[ext_resource type="Texture2D" uid="uid://bxwxjk381b4ir" path="res://icon.svg" id="2_g3lia"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_256xi")
@@ -10,3 +11,8 @@ autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(575.5, 325.577)
+scale = Vector2(0.0390623, 5.03786)
+texture = ExtResource("2_g3lia")
