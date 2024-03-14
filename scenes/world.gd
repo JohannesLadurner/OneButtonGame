@@ -9,14 +9,14 @@ class DataPoint:
 var data_points = []
 var index = 0
 
-var points_per_second = 50
 var max_height = 500
 var offset = 576
+var samples_per_second = 100
 var pixel_per_second
 
 func _ready():
 	$AudioStreamPlayer.stream = load("res://Jetta-I_d-Love-to-Change-the-World-_Matstubs-Remix_.wav")
-	var heights = AudioToWaveform.generate($AudioStreamPlayer.stream, points_per_second, max_height)
+	var heights = AudioToWaveform.generate($AudioStreamPlayer.stream, samples_per_second, max_height)
 	data_points = _generate_data_points(heights)
 	pixel_per_second = data_points[data_points.size()-1].x/$AudioStreamPlayer.stream.get_length()
 	queue_redraw()
@@ -25,26 +25,23 @@ func _ready():
 
 func _process(delta):
 	#Logic for consistent speed
-	#$Camera2D.position.x += delta*(points_per_second*2)
-	#print($Camera2D.position.x)
-	
-	#or
 	#$Camera2D.position.x = $AudioStreamPlayer.get_playback_position()*pixel_per_second+offset
 	#$Sprite2D.position = $Camera2D.position
 	
-	#Logic for varying speed based on music intensity
-	while data_points[index].x+offset < $Camera2D.position.x: #Get data point were we are at
-		index += 1
-	$Camera2D.position.x += delta*points_per_second*data_points[index].distance
+	#Logic for varying speed based on music intensity. Idea: Progress of music is 75% -> progress of data points must also be 75%
+	var pos = $AudioStreamPlayer.get_playback_position()
+	var music_pos = $AudioStreamPlayer.get_playback_position()/$AudioStreamPlayer.stream.get_length() #Calculate current progress of the music
+	var data_index = ceil(data_points.size() * music_pos) #Apply that progress to the data points and take the x position of it
+	$Camera2D.position.x = data_points[data_index].x + offset
 	$Sprite2D.position = $Camera2D.position
 
 func _draw():
 	for i in range(1,data_points.size()):
 		draw_line(Vector2(offset + data_points[i-1].x, data_points[i-1].y), Vector2(offset + data_points[i].x, data_points[i].y), Color.WHITE, 2.0)	
 		var color 
-		if i % points_per_second == 0: color = Color.RED
+		if i % samples_per_second == 0: color = Color.RED
 		else: color = Color.ORANGE
-		draw_line(Vector2(offset + data_points[i].x, 650), Vector2(offset + data_points[i].x, data_points[i].y), color, 2.0)
+		#draw_line(Vector2(offset + data_points[i].x, 650), Vector2(offset + data_points[i].x, data_points[i].y), color, 2.0)
 
 
 func _generate_data_points(heights: Array):
@@ -56,7 +53,6 @@ func _generate_data_points(heights: Array):
 		#data_point.x = i
 		#data_point.y = 600-heights[i]
 		#data_points.push_back(data_point)
-		
 		
 		
 		#Logic for varying speed
