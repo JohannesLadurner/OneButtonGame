@@ -8,13 +8,13 @@ class DataPoint:
 
 var data_points = []
 var max_height = 500
-var camera_offset = 450
-var samples_per_second = 100
+var camera_offset = 0
+var samples_per_second = 25
 var pixel_per_second
 var music_length
 
 func _ready():
-	$AudioStreamPlayer.stream = load("res://Jetta-I_d-Love-to-Change-the-World-_Matstubs-Remix_.wav")
+	$AudioStreamPlayer.stream = Global.selected_stream
 	var heights = AudioToWaveform.generate($AudioStreamPlayer.stream, samples_per_second, max_height)
 	data_points = _generate_data_points(heights)
 	music_length = $AudioStreamPlayer.stream.get_length()
@@ -37,12 +37,22 @@ func _process(delta):
 
 
 func _draw():
+	var steepness = 0
 	for i in range(1,data_points.size()):
+		if data_points[i-1].y > data_points[i].y:
+			steepness += data_points[i-1].y - data_points[i].y
+		else:
+			if steepness > 25:
+				print(steepness)
+				draw_circle(Vector2(data_points[i-1].x, data_points[i-1].y), 5, Color.RED)
+			steepness = 0
+			
+		
 		draw_line(Vector2(data_points[i-1].x, data_points[i-1].y), Vector2(data_points[i].x, data_points[i].y), Color.WHITE, 2.0)	
-		var color 
+		var color
 		if i % samples_per_second == 0: color = Color.RED
 		else: color = Color.ORANGE
-		#draw_line(Vector2(offset + data_points[i].x, 650), Vector2(offset + data_points[i].x, data_points[i].y), color, 2.0)
+		#draw_line(Vector2(data_points[i].x, 650), Vector2(data_points[i].x, data_points[i].y), color, 2.0)
 
 
 func _generate_data_points(heights: Array):
@@ -57,7 +67,7 @@ func _generate_data_points(heights: Array):
 		
 		
 		#Logic for varying speed
-		var distance = round(remap(heights[i], 0, max_height, 1, 5)) #Map the value to a range from 1-5 -> The higher the value, the higher the distance to the next point, camera has to keep up the speed and goes faster
+		var distance = round(remap(heights[i], 0, max_height, 2, 10)) #Map the value to a range from 1-5 -> The higher the value, the higher the distance to the next point, camera has to keep up the speed and goes faster
 		x += distance
 		var data_point = DataPoint.new()
 		data_point.x = x

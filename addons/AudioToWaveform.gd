@@ -1,9 +1,11 @@
 extends Node
 
+class_name AudioToWaveform
+
 const MAX_FREQUENCY: float = 3000.0 # Maximum frequency captured
 const SAMPLING_RATE = 2.0*MAX_FREQUENCY
 
-func generate(stream: AudioStreamWAV, points_per_second: int = 100, max_height: int = 500):
+static func generate(stream: AudioStreamWAV, points_per_second: int = 100, max_height: int = 500):
 	if not stream or points_per_second <= 0 or max_height <= 0:
 		return
 	
