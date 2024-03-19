@@ -23,8 +23,7 @@ func select_file_data() -> PackedByteArray:
 	""")
 	var result
 	while true:
-		OS.delay_msec(500)
-		#await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(1).timeout
 		result = JavaScriptBridge.eval("""(function () {
 		var output = document.getElementById("output")
 		if (output!== null) {
