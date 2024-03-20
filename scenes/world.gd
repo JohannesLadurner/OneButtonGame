@@ -13,6 +13,8 @@ var samples_per_second = 25
 var pixel_per_second
 var music_length
 
+var data_index = 0
+
 func _ready():
 	$AudioStreamPlayer.stream = Global.selected_stream
 	var heights = AudioToWaveform.generate($AudioStreamPlayer.stream, samples_per_second, max_height)
@@ -30,10 +32,12 @@ func _process(delta):
 	
 	#Logic for varying speed based on music intensity. Idea: Progress of music is 75% -> progress of data points must also be 75%
 	var music_pos = $AudioStreamPlayer.get_playback_position()/music_length #Calculate current progress of the music
-	var data_index = ceil(data_points.size() * music_pos) #Apply that progress to the data points
+	data_index = ceil(data_points.size() * music_pos) #Apply that progress to the data points
 	var pos_x = data_points[data_index].x #Take the x pos from the data point
 	$Camera2D.position.x = pos_x + camera_offset
 	$Sprite2D.position.x = pos_x
+	$WaveClearedViewportContainer.position.x = pos_x - $WaveClearedViewportContainer.size.x - 5
+	$WaveClearedViewportContainer.queue_redraw()
 
 
 func _draw():
@@ -43,7 +47,6 @@ func _draw():
 			steepness += data_points[i-1].y - data_points[i].y
 		else:
 			if steepness > 25:
-				print(steepness)
 				draw_circle(Vector2(data_points[i-1].x, data_points[i-1].y), 5, Color.RED)
 			steepness = 0
 			
@@ -54,6 +57,16 @@ func _draw():
 		else: color = Color.ORANGE
 		#draw_line(Vector2(data_points[i].x, 650), Vector2(data_points[i].x, data_points[i].y), color, 2.0)
 
+
+func _on_wave_cleared_viewport_container_draw():
+	var index = data_index
+	var offset = $Sprite2D.position.x
+	var draw_width = $WaveClearedViewportContainer.size.x-300
+	while offset - data_points[index].x < draw_width && index > 0:
+		var from = Vector2($WaveClearedViewportContainer.size.x+5-(offset-data_points[index].x), data_points[index].y)
+		var to = Vector2($WaveClearedViewportContainer.size.x+5-(offset-data_points[index-1].x), data_points[index-1].y)
+		$WaveClearedViewportContainer.draw_line(from, to, Color.GREEN, 3.0, true)
+		index = index - 1
 
 func _generate_data_points(heights: Array):
 	var x = 0
