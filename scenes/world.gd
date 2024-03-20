@@ -48,7 +48,7 @@ func _draw():
 			steepness = 0
 			
 		
-		draw_line(Vector2(data_points[i-1].x, data_points[i-1].y), Vector2(data_points[i].x, data_points[i].y), Color.WHITE, 2.0)	
+		draw_line(Vector2(data_points[i-1].x, data_points[i-1].y), Vector2(data_points[i].x, data_points[i].y), Color.WHITE, 2.0, true)	
 		var color
 		if i % samples_per_second == 0: color = Color.RED
 		else: color = Color.ORANGE
