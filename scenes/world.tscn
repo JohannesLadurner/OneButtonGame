@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5e66h1lmbkyg"]
+[gd_scene load_steps=8 format=3 uid="uid://b5e66h1lmbkyg"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_256xi"]
-[ext_resource type="Texture2D" uid="uid://bxwxjk381b4ir" path="res://icon.svg" id="2_g3lia"]
-[ext_resource type="Texture2D" uid="uid://cyoq01ne448v2" path="res://background/cloud1.png" id="3_p6kh4"]
-[ext_resource type="Texture2D" uid="uid://ccw7iscs7tqex" path="res://background/cloud7.png" id="4_7xwx3"]
-[ext_resource type="Texture2D" uid="uid://bvmd0w7fosmr2" path="res://background/moon_full.png" id="5_q7r6a"]
+[ext_resource type="Texture2D" uid="uid://cx6okvb4g4drv" path="res://icon.svg" id="2_g3lia"]
+[ext_resource type="PackedScene" uid="uid://dvrjb7ialos74" path="res://player.tscn" id="2_k83xy"]
+[ext_resource type="Texture2D" uid="uid://h4qvh0ekqhyn" path="res://background/cloud1.png" id="3_p6kh4"]
+[ext_resource type="Texture2D" uid="uid://d076ilt7dxkiu" path="res://background/cloud7.png" id="4_7xwx3"]
+[ext_resource type="Texture2D" uid="uid://dsn4n2713gcgl" path="res://background/moon_full.png" id="5_q7r6a"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_48cen"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_256xi")
+
+[node name="Player" parent="." instance=ExtResource("2_k83xy")]
+position = Vector2(575, 324)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
