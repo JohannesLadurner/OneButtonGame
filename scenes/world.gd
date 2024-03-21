@@ -36,6 +36,7 @@ func _process(delta):
 	var pos_x = data_points[data_index].x #Take the x pos from the data point
 	$Camera2D.position.x = pos_x + camera_offset
 	$Sprite2D.position.x = pos_x
+	$Player.position.x = pos_x
 	$WaveClearedViewportContainer.position.x = pos_x - $WaveClearedViewportContainer.size.x - 5
 	$WaveClearedViewportContainer.queue_redraw()
 
