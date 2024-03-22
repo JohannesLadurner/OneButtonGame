@@ -9,6 +9,7 @@ class DataPoint:
 var data_points = []
 var max_height = 500
 var camera_offset = 0
+var offset = 750
 var samples_per_second = 25
 var pixel_per_second
 var music_length
@@ -20,12 +21,18 @@ func _ready():
 	var heights = AudioToWaveform.generate($AudioStreamPlayer.stream, samples_per_second, max_height)
 	data_points = _generate_data_points(heights)
 	music_length = $AudioStreamPlayer.stream.get_length()
-	pixel_per_second = data_points[data_points.size()-1].x/$AudioStreamPlayer.stream.get_length()
+	pixel_per_second = data_points[data_points.size()-1].x/($AudioStreamPlayer.stream.get_length()+offset)
 	queue_redraw()
-	$AudioStreamPlayer.play()
-
+	#$AudioStreamPlayer.play()
 
 func _process(delta):
+	
+	if $Camera2D.position.x < offset:
+		_update_positions($Camera2D.position.x + 75*delta)
+		return
+	elif $AudioStreamPlayer.get_playback_position() == 0:
+		$AudioStreamPlayer.play()
+		
 	#Logic for consistent speed
 	#$Camera2D.position.x = $AudioStreamPlayer.get_playback_position()*pixel_per_second+offset
 	#$Sprite2D.position = $Camera2D.position
@@ -34,13 +41,17 @@ func _process(delta):
 	var music_pos = $AudioStreamPlayer.get_playback_position()/music_length #Calculate current progress of the music
 	data_index = ceil(data_points.size() * music_pos) #Apply that progress to the data points
 	var pos_x = data_points[data_index].x #Take the x pos from the data point
-	$Camera2D.position.x = pos_x + camera_offset
-	$Sprite2D.position.x = pos_x
-	$Player.position.x = pos_x
+	_update_positions(pos_x)
 	data_points[data_index].player_distance = abs($Player.position.y - data_points[data_index].y)
 	$WaveClearedViewportContainer.position.x = pos_x - $WaveClearedViewportContainer.size.x - 5
 	$WaveClearedViewportContainer.queue_redraw()
 
+
+func _update_positions(position: int):
+	$Camera2D.position.x = position + camera_offset
+	$Sprite2D.position.x = position
+	$Player.position.x = position
+	
 
 func _draw():
 	var steepness = 0
@@ -79,7 +90,7 @@ func _on_wave_cleared_viewport_container_draw():
 		index = index - 1
 
 func _generate_data_points(heights: Array):
-	var x = 0
+	var x = offset
 	var data_points = []
 	for i in heights.size():
 		#Logic for consistent speed
@@ -87,10 +98,9 @@ func _generate_data_points(heights: Array):
 		#data_point.x = i
 		#data_point.y = 600-heights[i]
 		#data_points.push_back(data_point)
-		
-		
+	
 		#Logic for varying speed
-		var distance = round(remap(heights[i], 0, max_height, 2, 10)) #Map the value to a range from 1-5 -> The higher the value, the higher the distance to the next point, camera has to keep up the speed and goes faster
+		var distance = round(remap(heights[i], 0, max_height, 1, 5)) #Map the value to a range from 1-5 -> The higher the value, the higher the distance to the next point, camera has to keep up the speed and goes faster
 		x += distance
 		var data_point = DataPoint.new()
 		data_point.x = x
