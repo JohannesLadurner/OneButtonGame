@@ -53,7 +53,7 @@ func _update_positions(position: int):
 	$Camera2D.position.x = position + camera_offset
 	$Sprite2D.position.x = position
 	$Player.position.x = position
-	$Label.position.x = position
+	
 
 func _draw():
 	var steepness = 0
@@ -116,4 +116,4 @@ func _generate_data_points(heights: Array):
 
 func updateScore(score):
 	var txt = "Score: %s" %score
-	$Label.text = txt
+	$Camera2D/Label.text = txt
