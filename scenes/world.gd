@@ -46,6 +46,8 @@ func _process(delta):
 	data_points[data_index].player_distance = abs($Player.position.y - data_points[data_index].y)
 	$WaveClearedViewportContainer.position.x = pos_x - $WaveClearedViewportContainer.size.x - 5
 	$WaveClearedViewportContainer.queue_redraw()
+	var points = _player_distance_to_points(data_points[data_index].player_distance)
+	if points != -1: score += points
 	updateScore(score)
 
 
@@ -81,19 +83,27 @@ func _on_wave_cleared_viewport_container_draw():
 		var color
 		
 		#Use color depending on how near the player got
-		if data_points[index].player_distance == -1: color = Color.WHITE #No data available
-		elif data_points[index].player_distance < 50:
-			color = Color.GREEN
-			score +=5
-		elif data_points[index].player_distance < 100:
-			color = Color.ORANGE
-			score +=1
-		else: color = Color.RED
+		var points = _player_distance_to_points(data_points[index].player_distance)
+		match points:
+			-1: color = Color.WHITE #No data available
+			0: color = Color.RED
+			1: color = Color.ORANGE
+			5: color = Color.GREEN
 		
 		var from = Vector2($WaveClearedViewportContainer.size.x+5-(offset-data_points[index].x), data_points[index].y)
 		var to = Vector2($WaveClearedViewportContainer.size.x+5-(offset-data_points[index-1].x), data_points[index-1].y)
 		$WaveClearedViewportContainer.draw_line(from, to, color, 3.0, true)
 		index = index - 1
+
+func _player_distance_to_points(player_distance: int) -> int:
+	if player_distance == -1: #No data available
+		return -1
+	if player_distance < 50:
+		return 5
+	if player_distance < 100:
+		return 1
+	return 0
+	
 
 func _generate_data_points(heights: Array):
 	var x = offset
