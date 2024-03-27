@@ -13,7 +13,7 @@ var offset = 750
 var samples_per_second = 25
 var pixel_per_second
 var music_length
-
+var score
 var data_index = 0
 
 func _ready():
@@ -23,6 +23,7 @@ func _ready():
 	music_length = $AudioStreamPlayer.stream.get_length()
 	pixel_per_second = data_points[data_points.size()-1].x/($AudioStreamPlayer.stream.get_length()+offset)
 	queue_redraw()
+	score = 0
 	#$AudioStreamPlayer.play()
 
 func _process(delta):
@@ -45,13 +46,14 @@ func _process(delta):
 	data_points[data_index].player_distance = abs($Player.position.y - data_points[data_index].y)
 	$WaveClearedViewportContainer.position.x = pos_x - $WaveClearedViewportContainer.size.x - 5
 	$WaveClearedViewportContainer.queue_redraw()
+	updateScore(score)
 
 
 func _update_positions(position: int):
 	$Camera2D.position.x = position + camera_offset
 	$Sprite2D.position.x = position
 	$Player.position.x = position
-	
+	$Label.position.x = position
 
 func _draw():
 	var steepness = 0
@@ -80,8 +82,12 @@ func _on_wave_cleared_viewport_container_draw():
 		
 		#Use color depending on how near the player got
 		if data_points[index].player_distance == -1: color = Color.WHITE #No data available
-		elif data_points[index].player_distance < 50: color = Color.GREEN
-		elif data_points[index].player_distance < 100: color = Color.ORANGE
+		elif data_points[index].player_distance < 50:
+			color = Color.GREEN
+			score +=5
+		elif data_points[index].player_distance < 100:
+			color = Color.ORANGE
+			score +=1
 		else: color = Color.RED
 		
 		var from = Vector2($WaveClearedViewportContainer.size.x+5-(offset-data_points[index].x), data_points[index].y)
@@ -107,3 +113,7 @@ func _generate_data_points(heights: Array):
 		data_point.y = 600-heights[i]
 		data_points.push_back(data_point)
 	return data_points
+
+func updateScore(score):
+	var txt = "Score: %s" %score
+	$Label.text = txt
