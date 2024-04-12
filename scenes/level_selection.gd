@@ -12,6 +12,10 @@ func _on_button_pressed():
 		$FileDialog.popup_centered(Vector2(500,500))
 
 
+func on_level_selected(path):
+	switch_to_level(load(path))
+
+
 func _on_file_dialog_file_selected(path):
 	#For local export
 	var stream = WAVFileReader.load(path).result

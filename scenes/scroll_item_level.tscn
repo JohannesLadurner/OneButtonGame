@@ -44,7 +44,7 @@ corner_radius_bottom_left = 15
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lggxu"]
 
 [node name="ScrollItemLevel" type="Panel"]
-custom_minimum_size = Vector2(450, 100)
+custom_minimum_size = Vector2(460, 100)
 theme_override_styles/panel = SubResource("StyleBoxFlat_h7xlr")
 script = ExtResource("1_376sm")
 
