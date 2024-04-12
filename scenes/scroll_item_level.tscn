@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://m5vdrjjnftsg"]
+
+[ext_resource type="Script" path="res://scenes/scroll_item_level.gd" id="1_376sm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7xlr"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3oo8"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dmgv"]
+bg_color = Color(0.203922, 0.803922, 0.454902, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a81ml"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lggxu"]
+
+[node name="ScrollItemLevel" type="Panel"]
+custom_minimum_size = Vector2(450, 100)
+theme_override_styles/panel = SubResource("StyleBoxFlat_h7xlr")
+script = ExtResource("1_376sm")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 11.0
+offset_right = 401.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Song Title
+
+"
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 45.0
+offset_right = 435.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_b3oo8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4dmgv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_a81ml")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lggxu")
+text = "Play"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
