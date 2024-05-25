@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/scroll_item_level.gd" id="1_376sm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7xlr"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.466667, 0.67451, 0.905882, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -28,7 +28,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dmgv"]
-bg_color = Color(0.203922, 0.803922, 0.454902, 1)
+bg_color = Color(0.654902, 0.0823529, 1, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4

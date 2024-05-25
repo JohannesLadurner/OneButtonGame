@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmjnasub5fkgg"]
+[gd_scene load_steps=7 format=3 uid="uid://cmjnasub5fkgg"]
 
 [ext_resource type="Script" path="res://scenes/level_selection.gd" id="1_7aakh"]
 [ext_resource type="PackedScene" uid="uid://m5vdrjjnftsg" path="res://scenes/scroll_item_level.tscn" id="2_ah68r"]
+[ext_resource type="PackedScene" uid="uid://bdgkvmwm3jks1" path="res://scenes/background.tscn" id="2_fk833"]
+[ext_resource type="Script" path="res://scenes/autoscroll_background.gd" id="3_2oin8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8av4n"]
 bg_color = Color(1, 1, 1, 1)
@@ -29,6 +31,9 @@ corner_radius_bottom_left = 20
 
 [node name="LevelSelection" type="Node2D"]
 script = ExtResource("1_7aakh")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_fk833")]
+script = ExtResource("3_2oin8")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 945.0
@@ -58,7 +63,7 @@ offset_right = 876.0
 offset_bottom = 576.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wkkq7")
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
+vertical_scroll_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2
@@ -68,7 +73,6 @@ theme_override_constants/margin_top = 10
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
-size_flags_vertical = 4
 theme_override_constants/separation = 10
 
 [node name="Level1" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_ah68r")]
