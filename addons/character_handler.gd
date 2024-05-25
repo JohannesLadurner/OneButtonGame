@@ -1,8 +1,8 @@
 extends Node
 
 var _all_characters = [
-	Character.new(0, load("res://icon.svg"), "Commander"),
-	Character.new(1, load("res://assets/characters/alien.png"), "Alien")
+	Character.new(0, "res://icon.svg", "Commander"),
+	Character.new(1, "res://assets/characters/alien.png", "Alien")
 ]
 
 func get_character(id: int) -> Character:
@@ -16,14 +16,14 @@ func get_all_characters() -> Array:
 
 class Character:
 	var _id: int
-	var _texture: Texture2D
+	var _texture_path: String
 	var _name: String
 	
-	func get_texture() -> Texture2D: return _texture
-	func get_name() -> String: return _name
 	func get_id() -> int: return _id
+	func get_texture_path() -> String: return _texture_path
+	func get_name() -> String: return _name
 	
-	func _init(id: int, texture: Texture2D, name: String):
+	func _init(id: int, texture_path: String, name: String):
 		self._id = id
-		self._texture = texture
+		self._texture_path = texture_path
 		self._name = name

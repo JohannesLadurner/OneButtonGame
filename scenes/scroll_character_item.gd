@@ -11,7 +11,7 @@ func set_character(id: int):
 	_character_id = id
 	if $Sprite2D == null:
 		print("here")
-	$Sprite2D.texture = character.get_texture()
+	$Sprite2D.texture = load(character.get_texture_path())
 	$Label.text = character.get_name()
 
 func _on_button_pressed():
