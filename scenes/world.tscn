@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5e66h1lmbkyg"]
+[gd_scene load_steps=5 format=3 uid="uid://b5e66h1lmbkyg"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_256xi"]
-[ext_resource type="Texture2D" uid="uid://cx6okvb4g4drv" path="res://icon.svg" id="2_g3lia"]
+[ext_resource type="Texture2D" uid="uid://bxwxjk381b4ir" path="res://icon.svg" id="2_g3lia"]
 [ext_resource type="PackedScene" uid="uid://dvrjb7ialos74" path="res://player.tscn" id="2_k83xy"]
-[ext_resource type="Texture2D" uid="uid://eq6hl3hcgxio" path="res://background/background.png" id="3_63au5"]
-[ext_resource type="Texture2D" uid="uid://x4krsqul03e7" path="res://background/stars.png" id="4_il0wy"]
-[ext_resource type="Texture2D" uid="uid://cr2wo5us3x3a0" path="res://background/background2.png" id="5_y38uf"]
+[ext_resource type="PackedScene" uid="uid://bdgkvmwm3jks1" path="res://scenes/background.tscn" id="3_lfc8w"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_256xi")
@@ -22,6 +20,7 @@ offset_left = -576.0
 offset_top = -324.0
 offset_right = -515.0
 offset_bottom = -301.0
+theme_override_font_sizes/font_size = 25
 text = "Score: 0"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -29,35 +28,7 @@ position = Vector2(575.5, 325.577)
 scale = Vector2(0.0390623, 5.03786)
 texture = ExtResource("2_g3lia")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="BackgroundColor" type="Sprite2D" parent="ParallaxBackground"]
-modulate = Color(0.584314, 1, 1, 0.478431)
-position = Vector2(568.5, 347.125)
-scale = Vector2(0.527542, 0.526677)
-texture = ExtResource("3_63au5")
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(1152, 0)
-
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(578, 324)
-scale = Vector2(0.487288, 0.396341)
-texture = ExtResource("5_y38uf")
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(1152, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-position = Vector2(577.5, 324)
-scale = Vector2(0.487712, 0.395122)
-texture = ExtResource("4_il0wy")
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.1, 0.1)
-motion_mirroring = Vector2(1280, 0)
+[node name="Background" parent="." instance=ExtResource("3_lfc8w")]
 
 [node name="WaveClearedViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 572.0

@@ -1,5 +1,5 @@
 extends Node2D
-const FOLLOW_SPEED = 6.0
+const FOLLOW_SPEED = 10.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

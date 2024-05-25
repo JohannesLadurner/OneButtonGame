@@ -55,9 +55,6 @@ offset_top = 11.0
 offset_right = 401.0
 offset_bottom = 76.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Song Title
-
-"
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 0

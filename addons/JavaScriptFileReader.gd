@@ -12,7 +12,7 @@ func select_file_data() -> PackedByteArray:
 			reader.readAsArrayBuffer(file);
 			
 			reader.onload = async readerEvent => {
-				var filecontent = readerEvent.target.result; // this is the content!			
+				var filecontent = readerEvent.target.result; // this is the content!
 				var img = document.createElement('img');
 				img.id = "output";
 				img.data = filecontent;
