@@ -1,5 +1,14 @@
 extends Node2D
 
+@onready var container = $ScrollContainer/MarginContainer/VBoxContainer
+
+func _ready():
+	for song in SongHandler.get_all_songs():
+		var item = load("res://scenes/scroll_item_level.tscn").instantiate()
+		container.add_child(item)
+		item.set_song(song)
+		item.selected.connect(on_level_selected)
+
 func _on_button_pressed():
 	if OS.get_name() == "Web":
 		#For HTML export
@@ -12,8 +21,8 @@ func _on_button_pressed():
 		$FileDialog.popup_centered(Vector2(500,500))
 
 
-func on_level_selected(path):
-	switch_to_level(load(path))
+func on_level_selected(song: SongHandler.Song):
+	switch_to_level(load(song.get_stream_path()))
 
 
 func _on_file_dialog_file_selected(path):

@@ -1,11 +1,11 @@
-@tool
 extends Panel
 
-@export var song_title: String
-@export var song_path: String
-
-func _process(delta):
-	$Title.text = song_title
+var _song: SongHandler.Song
+signal selected
+	
+func set_song(song: SongHandler.Song):
+	_song = song
+	$Title.text = song.get_title()
 
 func _on_play_button_pressed():
-	get_tree().root.get_node("LevelSelection").on_level_selected(song_path)
+	selected.emit(_song)

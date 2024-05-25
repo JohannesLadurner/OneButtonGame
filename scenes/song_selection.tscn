@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmjnasub5fkgg"]
+
+[ext_resource type="Script" path="res://scenes/song_selection.gd" id="1_wp3ck"]
+[ext_resource type="PackedScene" uid="uid://bdgkvmwm3jks1" path="res://scenes/background.tscn" id="2_4wv4u"]
+[ext_resource type="Script" path="res://scenes/autoscroll_background.gd" id="3_kp73q"]
+[ext_resource type="StyleBox" uid="uid://dl0xufa2op3rl" path="res://styles/button_normal.tres" id="4_bbyet"]
+[ext_resource type="StyleBox" uid="uid://cq3kge22ppogc" path="res://styles/button_focused.tres" id="5_ao54e"]
+[ext_resource type="StyleBox" uid="uid://c608m56ocsogw" path="res://styles/scroll_container.tres" id="6_88qnf"]
+
+[node name="LevelSelection" type="Node2D"]
+script = ExtResource("1_wp3ck")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_4wv4u")]
+script = ExtResource("3_kp73q")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 945.0
+offset_top = 526.0
+offset_right = 1095.0
+offset_bottom = 608.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("4_bbyet")
+theme_override_styles/hover = ExtResource("5_ao54e")
+theme_override_styles/pressed = ExtResource("5_ao54e")
+theme_override_styles/focus = ExtResource("5_ao54e")
+text = "Custom Song
+"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.wav")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(500, 400)
+offset_left = 376.0
+offset_top = 54.0
+offset_right = 876.0
+offset_bottom = 576.0
+theme_override_styles/panel = ExtResource("6_88qnf")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 10
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

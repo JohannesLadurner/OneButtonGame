@@ -4,12 +4,6 @@ var _all_characters = [
 	Character.new(0, "res://icon.svg", "Commander"),
 	Character.new(1, "res://assets/characters/alien.png", "Alien")
 ]
-
-func get_character(id: int) -> Character:
-	for character in _all_characters:
-		if character.get_id() == id:
-			return character
-	return null
 	
 func get_all_characters() -> Array:
 	return _all_characters

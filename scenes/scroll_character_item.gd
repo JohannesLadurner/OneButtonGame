@@ -1,18 +1,12 @@
 extends Panel
 
-var _character_id: int
+var _character: CharacterHandler.Character
 signal selected
 	
-func set_character(id: int):
-	var character = CharacterHandler.get_character(id)
-	if character == null:
-		print(str("Character with id ", id, " does not exist!"))
-		return
-	_character_id = id
-	if $Sprite2D == null:
-		print("here")
+func set_character(character: CharacterHandler.Character):
+	_character = character
 	$Sprite2D.texture = load(character.get_texture_path())
 	$Label.text = character.get_name()
 
 func _on_button_pressed():
-	selected.emit(_character_id)
+	selected.emit(_character)
