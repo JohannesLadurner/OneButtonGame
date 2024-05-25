@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwe03tn4qtcbc"]
+
+[ext_resource type="Script" path="res://scenes/scroll_character_item.gd" id="1_npnlh"]
+[ext_resource type="StyleBox" uid="uid://dl0xufa2op3rl" path="res://styles/button_normal.tres" id="2_u1akw"]
+[ext_resource type="StyleBox" uid="uid://cq3kge22ppogc" path="res://styles/button_focused.tres" id="3_23e18"]
+[ext_resource type="Texture2D" uid="uid://bxwxjk381b4ir" path="res://icon.svg" id="4_3md86"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qudcg"]
+
+[node name="ScrollPlayerItem" type="Panel"]
+custom_minimum_size = Vector2(150, 150)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qudcg")
+script = ExtResource("1_npnlh")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 150.0
+theme_override_styles/normal = ExtResource("2_u1akw")
+theme_override_styles/hover = ExtResource("3_23e18")
+theme_override_styles/pressed = ExtResource("3_23e18")
+theme_override_styles/focus = ExtResource("3_23e18")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(75, 65)
+scale = Vector2(0.732422, 0.732422)
+texture = ExtResource("4_3md86")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_top = 113.0
+offset_right = 150.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Character"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

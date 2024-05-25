@@ -6,18 +6,7 @@
 [ext_resource type="Script" path="res://scenes/autoscroll_background.gd" id="3_2oin8"]
 [ext_resource type="StyleBox" uid="uid://dl0xufa2op3rl" path="res://styles/button_normal.tres" id="4_ec7io"]
 [ext_resource type="StyleBox" uid="uid://cq3kge22ppogc" path="res://styles/button_focused.tres" id="5_6v83k"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkkq7"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+[ext_resource type="StyleBox" uid="uid://c608m56ocsogw" path="res://styles/scroll_container.tres" id="6_jflfy"]
 
 [node name="LevelSelection" type="Node2D"]
 script = ExtResource("1_7aakh")
@@ -54,7 +43,7 @@ offset_left = 376.0
 offset_top = 54.0
 offset_right = 876.0
 offset_bottom = 576.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_wkkq7")
+theme_override_styles/panel = ExtResource("6_jflfy")
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 

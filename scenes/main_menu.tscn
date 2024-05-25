@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcehdvkflgyr1"]
+[gd_scene load_steps=8 format=3 uid="uid://bcehdvkflgyr1"]
 
 [ext_resource type="PackedScene" uid="uid://bdgkvmwm3jks1" path="res://scenes/background.tscn" id="1_opd4w"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_ysdqt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dpl2sibgihrpb" path="res://assets/logo.png" id="3_ckrsj"]
 [ext_resource type="StyleBox" uid="uid://dl0xufa2op3rl" path="res://styles/button_normal.tres" id="5_55yx1"]
 [ext_resource type="StyleBox" uid="uid://cq3kge22ppogc" path="res://styles/button_focused.tres" id="6_h0ffk"]
+[ext_resource type="Texture2D" uid="uid://bxwxjk381b4ir" path="res://icon.svg" id="7_3pc8p"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_ysdqt")
@@ -22,7 +23,7 @@ texture = ExtResource("3_ckrsj")
 offset_left = 501.0
 offset_top = 409.0
 offset_right = 651.0
-offset_bottom = 467.0
+offset_bottom = 469.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -34,4 +35,17 @@ theme_override_styles/pressed = ExtResource("6_h0ffk")
 theme_override_styles/focus = ExtResource("6_h0ffk")
 text = "Play"
 
+[node name="SelectCharacterButton" type="Button" parent="."]
+offset_left = 518.0
+offset_top = 166.0
+offset_right = 568.0
+offset_bottom = 216.0
+flat = true
+
+[node name="Character" type="Sprite2D" parent="SelectCharacterButton"]
+position = Vector2(25, 25)
+scale = Vector2(0.378292, 0.378292)
+texture = ExtResource("7_3pc8p")
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="SelectCharacterButton" to="." method="_on_select_character_button_pressed"]

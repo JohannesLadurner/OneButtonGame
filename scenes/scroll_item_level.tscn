@@ -1,25 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://m5vdrjjnftsg"]
 
 [ext_resource type="Script" path="res://scenes/scroll_item_level.gd" id="1_376sm"]
+[ext_resource type="StyleBox" uid="uid://ory650polqkq" path="res://styles/item_normal.tres" id="1_p55ts"]
 [ext_resource type="StyleBox" uid="uid://dl0xufa2op3rl" path="res://styles/button_normal.tres" id="2_7vn3e"]
 [ext_resource type="StyleBox" uid="uid://cq3kge22ppogc" path="res://styles/button_focused.tres" id="3_i2pb5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h7xlr"]
-bg_color = Color(0.466667, 0.67451, 0.905882, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-corner_detail = 15
-
 [node name="ScrollItemLevel" type="Panel"]
 custom_minimum_size = Vector2(460, 100)
-theme_override_styles/panel = SubResource("StyleBoxFlat_h7xlr")
+theme_override_styles/panel = ExtResource("1_p55ts")
 script = ExtResource("1_376sm")
 
 [node name="Title" type="Label" parent="."]

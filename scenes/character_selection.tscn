@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://c83ijuwwd8hm2"]
+
+[ext_resource type="Script" path="res://scenes/character_selection.gd" id="1_sairu"]
+[ext_resource type="PackedScene" uid="uid://bdgkvmwm3jks1" path="res://scenes/background.tscn" id="2_ft3a1"]
+[ext_resource type="Script" path="res://scenes/autoscroll_background.gd" id="3_bakmq"]
+[ext_resource type="StyleBox" uid="uid://c608m56ocsogw" path="res://styles/scroll_container.tres" id="4_a7m4b"]
+[ext_resource type="StyleBox" uid="uid://dl0xufa2op3rl" path="res://styles/button_normal.tres" id="6_sv2wr"]
+[ext_resource type="StyleBox" uid="uid://cq3kge22ppogc" path="res://styles/button_focused.tres" id="7_yn2o5"]
+
+[node name="CharacterSelection" type="Node2D"]
+script = ExtResource("1_sairu")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_ft3a1")]
+script = ExtResource("3_bakmq")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 189.0
+offset_top = 148.0
+offset_right = 924.0
+offset_bottom = 528.0
+theme_override_styles/panel = ExtResource("4_a7m4b")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 25
+columns = 4
+
+[node name="Button" type="Button" parent="."]
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 168.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("6_sv2wr")
+theme_override_styles/hover = ExtResource("7_yn2o5")
+theme_override_styles/pressed = ExtResource("7_yn2o5")
+theme_override_styles/focus = ExtResource("7_yn2o5")
+text = "Back"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

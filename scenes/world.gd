@@ -16,8 +16,8 @@ var score
 var data_index = 0
 
 func _ready():
-	$AudioStreamPlayer.stream = Global.selected_stream
-	var heights = AudioToWaveform.generate($AudioStreamPlayer.stream, Global.gameplay_properties.get_samples_per_second(), Global.gameplay_properties.get_max_height())
+	$AudioStreamPlayer.stream = GameState.selected_stream
+	var heights = AudioToWaveform.generate($AudioStreamPlayer.stream, GameState.gameplay_properties.get_samples_per_second(), GameState.gameplay_properties.get_max_height())
 	data_points = _generate_data_points(heights)
 	music_length = $AudioStreamPlayer.stream.get_length()
 	pixel_per_second = data_points[data_points.size()-1].x/($AudioStreamPlayer.stream.get_length()+offset)
@@ -61,7 +61,7 @@ func _draw():
 	for i in range(1,data_points.size()):
 		draw_line(Vector2(data_points[i-1].x, data_points[i-1].y), Vector2(data_points[i].x, data_points[i].y), Color.WHITE, 2.0, true)	
 		var color
-		if i % Global.gameplay_properties.get_samples_per_second() == 0: color = Color.RED
+		if i % GameState.gameplay_properties.get_samples_per_second() == 0: color = Color.RED
 		else: color = Color.ORANGE
 		#draw_line(Vector2(data_points[i].x, 650), Vector2(data_points[i].x, data_points[i].y), color, 2.0)
 
@@ -112,8 +112,8 @@ func _generate_data_points(heights: Array):
 		#data_points.push_back(data_point)
 	
 		#Logic for varying speed
-		var speed_range = Global.gameplay_properties.get_speed_range()
-		var distance = round(remap(heights[i], 0, Global.gameplay_properties.get_max_height(), speed_range.min(), speed_range.max())) #Map the value to a range from 1-5 -> The higher the value, the higher the distance to the next point, camera has to keep up the speed and goes faster
+		var speed_range = GameState.gameplay_properties.get_speed_range()
+		var distance = round(remap(heights[i], 0, GameState.gameplay_properties.get_max_height(), speed_range.min(), speed_range.max())) #Map the value to a range from 1-5 -> The higher the value, the higher the distance to the next point, camera has to keep up the speed and goes faster
 		x += distance
 		var data_point = DataPoint.new()
 		data_point.x = x
