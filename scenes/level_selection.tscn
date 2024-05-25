@@ -1,21 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmjnasub5fkgg"]
+[gd_scene load_steps=8 format=3 uid="uid://cmjnasub5fkgg"]
 
 [ext_resource type="Script" path="res://scenes/level_selection.gd" id="1_7aakh"]
 [ext_resource type="PackedScene" uid="uid://m5vdrjjnftsg" path="res://scenes/scroll_item_level.tscn" id="2_ah68r"]
 [ext_resource type="PackedScene" uid="uid://bdgkvmwm3jks1" path="res://scenes/background.tscn" id="2_fk833"]
 [ext_resource type="Script" path="res://scenes/autoscroll_background.gd" id="3_2oin8"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8av4n"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+[ext_resource type="StyleBox" uid="uid://dl0xufa2op3rl" path="res://styles/button_normal.tres" id="4_ec7io"]
+[ext_resource type="StyleBox" uid="uid://cq3kge22ppogc" path="res://styles/button_focused.tres" id="5_6v83k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wkkq7"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -44,7 +34,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_8av4n")
+theme_override_styles/normal = ExtResource("4_ec7io")
+theme_override_styles/hover = ExtResource("5_6v83k")
+theme_override_styles/pressed = ExtResource("5_6v83k")
+theme_override_styles/focus = ExtResource("5_6v83k")
 text = "Custom Song
 "
 
