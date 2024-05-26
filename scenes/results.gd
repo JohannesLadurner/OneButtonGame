@@ -66,4 +66,4 @@ func nodes_animation(score_total, perfect_percentage, good_percentage, miss_perc
 		)
 
 func _on_back_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/song_selection.tscn")
+	FadeTransition.change_scene("res://scenes/song_selection.tscn")

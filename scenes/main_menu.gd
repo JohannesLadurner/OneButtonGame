@@ -10,7 +10,7 @@ func _ready():
 	character_sprite.texture = load(character.get_texture_path())
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/song_selection.tscn")
+	FadeTransition.change_scene("res://scenes/song_selection.tscn")
 
 func _on_select_character_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/character_selection.tscn")
+	FadeTransition.change_scene("res://scenes/character_selection.tscn")

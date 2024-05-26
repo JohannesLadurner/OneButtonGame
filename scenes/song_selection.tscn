@@ -56,5 +56,18 @@ layout_mode = 2
 size_flags_horizontal = 6
 theme_override_constants/separation = 10
 
+[node name="BackButton" type="Button" parent="."]
+offset_left = 18.0
+offset_top = 17.0
+offset_right = 168.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("4_bbyet")
+theme_override_styles/hover = ExtResource("5_ao54e")
+theme_override_styles/pressed = ExtResource("5_ao54e")
+theme_override_styles/focus = ExtResource("5_ao54e")
+text = "Back"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -16,6 +16,8 @@ var music_length
 var score
 var data_index = 0
 
+var finished = false
+
 func _ready():
 	$AudioStreamPlayer.stream = GameState.current_stream
 	var heights = AudioToWaveform.generate($AudioStreamPlayer.stream, GameState.gameplay_properties.get_samples_per_second(), GameState.gameplay_properties.get_max_height())
@@ -28,6 +30,7 @@ func _ready():
 	#$AudioStreamPlayer.play()
 
 func _process(delta):
+	if finished: return
 	
 	if $Camera2D.position.x < offset:
 		_update_positions($Camera2D.position.x + 75*delta)
@@ -45,7 +48,8 @@ func _process(delta):
 	
 	if data_index >= data_points.size(): #Reached end of song
 		GameState.current_rewards = reward_history
-		get_tree().change_scene_to_file("res://scenes/results.tscn")
+		FadeTransition.change_scene("res://scenes/results.tscn", 0.5)
+		finished = true
 		return
 	
 	var pos_x = data_points[data_index].x #Take the x pos from the data point
