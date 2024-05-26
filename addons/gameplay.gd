@@ -4,6 +4,8 @@ class_name Gameplay
 
 enum Difficulty {EASY, MEDIUM, HARD}
 
+enum Reward {PERFECT=3, GOOD=1, MISS=0, UNKNOWN=-1}
+
 class Properties:
 	var _difficulty: Difficulty
 	var _max_height: int

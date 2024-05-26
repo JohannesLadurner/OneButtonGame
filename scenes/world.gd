@@ -7,6 +7,7 @@ class DataPoint:
 	var player_distance: int = -1
 
 var data_points = []
+var reward_history = []
 var camera_offset = 0
 var offset = 750
 
@@ -16,9 +17,10 @@ var score
 var data_index = 0
 
 func _ready():
-	$AudioStreamPlayer.stream = GameState.selected_stream
+	$AudioStreamPlayer.stream = GameState.current_stream
 	var heights = AudioToWaveform.generate($AudioStreamPlayer.stream, GameState.gameplay_properties.get_samples_per_second(), GameState.gameplay_properties.get_max_height())
 	data_points = _generate_data_points(heights)
+	reward_history.resize(data_points.size())
 	music_length = $AudioStreamPlayer.stream.get_length()
 	pixel_per_second = data_points[data_points.size()-1].x/($AudioStreamPlayer.stream.get_length()+offset)
 	queue_redraw()
@@ -40,13 +42,21 @@ func _process(delta):
 	#Logic for varying speed based on music intensity. Idea: Progress of music is 75% -> progress of data points must also be 75%
 	var music_pos = $AudioStreamPlayer.get_playback_position()/music_length #Calculate current progress of the music
 	data_index = ceil(data_points.size() * music_pos) #Apply that progress to the data points
+	
+	if data_index >= data_points.size(): #Reached end of song
+		GameState.current_rewards = reward_history
+		get_tree().change_scene_to_file("res://scenes/results.tscn")
+		return
+	
 	var pos_x = data_points[data_index].x #Take the x pos from the data point
 	_update_positions(pos_x)
 	data_points[data_index].player_distance = abs($Player.position.y - data_points[data_index].y)
 	$WaveClearedViewportContainer.position.x = pos_x - $WaveClearedViewportContainer.size.x - 5
 	$WaveClearedViewportContainer.queue_redraw()
-	var points = _player_distance_to_points(data_points[data_index].player_distance)
-	if points != -1: score += points
+	var reward = _player_distance_to_reward(data_points[data_index].player_distance)
+	if reward != Gameplay.Reward.UNKNOWN: 
+		score += reward
+		reward_history[data_index] = reward
 	updateScore(score)
 
 
@@ -74,31 +84,33 @@ func _on_wave_cleared_viewport_container_draw():
 		var color
 		
 		#Use color depending on how near the player got
-		var points = _player_distance_to_points(data_points[index].player_distance)
+		var reward = _player_distance_to_reward(data_points[index].player_distance)
 		#If there is no data available, take last datapoint as a reference
-		if points == -1 and index > 0:
+		if reward == Gameplay.Reward.UNKNOWN and index > 0:
 			data_points[index].player_distance = data_points[index-1].player_distance
-			if points != -1: score += points
-			points = _player_distance_to_points(data_points[index].player_distance)
-		match points:
-			-1: color = Color.WHITE #No data available
-			0: color = Color.RED
-			1: color = Color.ORANGE
-			5: color = Color.GREEN
+			if reward == Gameplay.Reward.UNKNOWN: 
+				score += reward
+				reward_history[index] = reward
+			reward = _player_distance_to_reward(data_points[index].player_distance)
+		match reward:
+			Gameplay.Reward.UNKNOWN: color = Color.WHITE #No data available
+			Gameplay.Reward.MISS: color = Color.RED
+			Gameplay.Reward.GOOD: color = Color.ORANGE
+			Gameplay.Reward.PERFECT: color = Color.GREEN
 		
 		var from = Vector2($WaveClearedViewportContainer.size.x+5-(offset-data_points[index].x), data_points[index].y)
 		var to = Vector2($WaveClearedViewportContainer.size.x+5-(offset-data_points[index-1].x), data_points[index-1].y)
 		$WaveClearedViewportContainer.draw_line(from, to, color, 3.0, true)
 		index = index - 1
 
-func _player_distance_to_points(player_distance: int) -> int:
+func _player_distance_to_reward(player_distance: int) -> Gameplay.Reward:
 	if player_distance == -1: #No data available
-		return -1
+		return Gameplay.Reward.UNKNOWN
 	if player_distance < 50:
-		return 5
+		return Gameplay.Reward.PERFECT
 	if player_distance < 100:
-		return 1
-	return 0
+		return Gameplay.Reward.GOOD
+	return Gameplay.Reward.MISS
 	
 
 func _generate_data_points(heights: Array):

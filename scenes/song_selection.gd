@@ -32,5 +32,5 @@ func _on_file_dialog_file_selected(path):
 	
 
 func switch_to_level(stream: AudioStream):
-	GameState.selected_stream = stream
+	GameState.current_stream = stream
 	get_tree().change_scene_to_file("res://scenes/world.tscn")

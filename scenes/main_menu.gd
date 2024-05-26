@@ -5,7 +5,7 @@ extends Node2D
 func _ready():
 	var character = GameState.selected_character
 	if character == null:
-		character = CharacterHandler.get_all_characters()[0]
+		character = CharacterHandler.get_all_characters()[0] #Just pick the first character if none was found
 		GameState.selected_character = character
 	character_sprite.texture = load(character.get_texture_path())
 
