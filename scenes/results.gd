@@ -53,10 +53,10 @@ func nodes_animation(score_total, perfect_percentage, good_percentage, miss_perc
 			percentages_tween.tween_property(percentages_node, "position", percentages_position.position, fly_in_duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 			percentages_tween.tween_callback(func():
 				#Percentages go up
-				get_tree().create_tween().tween_method(func(num): perfect_label.text = str(num/100.0, "%"), 0, perfect_percentage*100, duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
-				get_tree().create_tween().tween_method(func(num): good_label.text = str(num/100.0, "%"), 0, good_percentage*100, duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+				get_tree().create_tween().tween_method(func(num): perfect_label.text = str("%.2f" % (num/100.0), "%"), 0, perfect_percentage*100, duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+				get_tree().create_tween().tween_method(func(num): good_label.text = str("%.2f" % (num/100.0), "%"), 0, good_percentage*100, duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 				var miss_tween = get_tree().create_tween()
-				miss_tween.tween_method(func(num): miss_label.text = str(num/100.0, "%"), 0, miss_percentage*100, duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+				miss_tween.tween_method(func(num): miss_label.text = str("%.2f" % (num/100.0), "%"), 0, miss_percentage*100, duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 				miss_tween.tween_callback(func():
 					#Back button flies in
 					get_tree().create_tween().tween_property(back_button, "position", back_button_position.position, fly_in_duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)

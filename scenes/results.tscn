@@ -42,9 +42,9 @@ vertical_alignment = 1
 
 [node name="PerfectPercentage" type="Label" parent="Percentages/PerfectPercentageTitle"]
 layout_mode = 0
-offset_left = -30.0
+offset_left = -10.0
 offset_top = -65.0
-offset_right = 71.0
+offset_right = 134.0
 offset_bottom = 4.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -65,9 +65,9 @@ text = "Good"
 
 [node name="GoodPercentage" type="Label" parent="Percentages/GoodPercentageTitle"]
 layout_mode = 0
-offset_left = -40.0
+offset_left = -20.0
 offset_top = -65.0
-offset_right = 61.0
+offset_right = 124.0
 offset_bottom = 4.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -88,9 +88,9 @@ text = "Miss"
 
 [node name="MissPercentage" type="Label" parent="Percentages/MissPercentageTitle"]
 layout_mode = 0
-offset_left = -40.0
+offset_left = -20.0
 offset_top = -65.0
-offset_right = 61.0
+offset_right = 124.0
 offset_bottom = 4.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
