@@ -10,7 +10,7 @@ func _ready():
 		item.selected.connect(_on_character_selected)
 
 func _on_character_selected(character: CharacterHandler.Character):
-	GameState.selected_character = character
+	GameState.selected_character_id = character.get_id()
 	FadeTransition.change_scene("res://scenes/main_menu.tscn")
 
 func _on_button_pressed():
