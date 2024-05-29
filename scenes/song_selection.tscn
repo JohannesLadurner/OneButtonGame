@@ -13,7 +13,7 @@ script = ExtResource("1_wp3ck")
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_4wv4u")]
 script = ExtResource("3_kp73q")
 
-[node name="Button" type="Button" parent="."]
+[node name="CustomSongButton" type="Button" parent="."]
 offset_left = 945.0
 offset_top = 526.0
 offset_right = 1095.0
@@ -68,6 +68,6 @@ theme_override_styles/pressed = ExtResource("5_ao54e")
 theme_override_styles/focus = ExtResource("5_ao54e")
 text = "Back"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CustomSongButton" to="." method="_on_custom_song_button_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

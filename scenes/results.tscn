@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkq7hs3kvss2m"]
+[gd_scene load_steps=8 format=3 uid="uid://bkq7hs3kvss2m"]
 
 [ext_resource type="Script" path="res://scenes/results.gd" id="1_acwed"]
 [ext_resource type="PackedScene" uid="uid://bdgkvmwm3jks1" path="res://scenes/background.tscn" id="2_fe8lu"]
 [ext_resource type="Script" path="res://scenes/autoscroll_background.gd" id="3_gwpv7"]
 [ext_resource type="StyleBox" uid="uid://dl0xufa2op3rl" path="res://styles/button_normal.tres" id="4_efp42"]
 [ext_resource type="StyleBox" uid="uid://cq3kge22ppogc" path="res://styles/button_focused.tres" id="5_fcgfw"]
+[ext_resource type="StyleBox" uid="uid://ory650polqkq" path="res://styles/item_normal.tres" id="6_1f0tr"]
+[ext_resource type="PackedScene" uid="uid://dwe03tn4qtcbc" path="res://scenes/scroll_character_item.tscn" id="6_dho6y"]
 
 [node name="Results" type="Node2D"]
 script = ExtResource("1_acwed")
@@ -28,9 +30,9 @@ horizontal_alignment = 1
 position = Vector2(0, 400)
 
 [node name="PerfectPercentageTitle" type="Label" parent="Percentages"]
-offset_left = 300.0
+offset_left = 250.0
 offset_top = 400.0
-offset_right = 403.0
+offset_right = 353.0
 offset_bottom = 442.0
 theme_override_colors/font_color = Color(0, 0.964706, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -42,9 +44,9 @@ vertical_alignment = 1
 
 [node name="PerfectPercentage" type="Label" parent="Percentages/PerfectPercentageTitle"]
 layout_mode = 0
-offset_left = -10.0
+offset_left = -89.0
 offset_top = -65.0
-offset_right = 134.0
+offset_right = 191.0
 offset_bottom = 4.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -65,9 +67,9 @@ text = "Good"
 
 [node name="GoodPercentage" type="Label" parent="Percentages/GoodPercentageTitle"]
 layout_mode = 0
-offset_left = -20.0
+offset_left = -107.0
 offset_top = -65.0
-offset_right = 124.0
+offset_right = 190.0
 offset_bottom = 4.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -76,9 +78,9 @@ text = "0.00%"
 horizontal_alignment = 1
 
 [node name="MissPercentageTitle" type="Label" parent="Percentages"]
-offset_left = 800.0
+offset_left = 850.0
 offset_top = 400.0
-offset_right = 877.0
+offset_right = 927.0
 offset_bottom = 442.0
 theme_override_colors/font_color = Color(0.976471, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -88,9 +90,9 @@ text = "Miss"
 
 [node name="MissPercentage" type="Label" parent="Percentages/MissPercentageTitle"]
 layout_mode = 0
-offset_left = -20.0
+offset_left = -132.0
 offset_top = -65.0
-offset_right = 124.0
+offset_right = 197.0
 offset_bottom = 4.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
@@ -110,12 +112,64 @@ theme_override_styles/pressed = ExtResource("4_efp42")
 theme_override_styles/focus = ExtResource("5_fcgfw")
 text = "Back"
 
-[node name="PercentagesPosition" type="Node2D" parent="."]
+[node name="Positions" type="Node2D" parent="."]
 
-[node name="BackButtonPosition" type="Node2D" parent="."]
+[node name="AchievementStartPosition" type="Node2D" parent="Positions"]
+position = Vector2(200, -125)
+
+[node name="AchievementEndPosition" type="Node2D" parent="Positions"]
+position = Vector2(200, 5)
+
+[node name="ScorePosition" type="Node2D" parent="Positions"]
+position = Vector2(0, 115)
+
+[node name="PercentagesPosition" type="Node2D" parent="Positions"]
+
+[node name="BackButtonPosition" type="Node2D" parent="Positions"]
 position = Vector2(500, 550)
 
-[node name="ScorePosition" type="Node2D" parent="."]
-position = Vector2(0, 110)
+[node name="Achievement" type="Panel" parent="."]
+offset_left = 200.0
+offset_top = -125.0
+offset_right = 861.0
+offset_bottom = -9.0
+theme_override_styles/panel = ExtResource("6_1f0tr")
+
+[node name="Character" parent="Achievement" instance=ExtResource("6_dho6y")]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 13.0
+offset_right = 161.0
+offset_bottom = 163.0
+scale = Vector2(0.6, 0.6)
+
+[node name="Title" type="Label" parent="Achievement"]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 3.0
+offset_right = 467.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "New Unlock!"
+
+[node name="Description" type="Label" parent="Achievement"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 41.0
+offset_right = 646.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Reach a minimum score of x in Song x"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Line2D" type="Line2D" parent="Achievement"]
+position = Vector2(0, -2)
+points = PackedVector2Array(249, 38, 469, 38)
+width = 3.0
+default_color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

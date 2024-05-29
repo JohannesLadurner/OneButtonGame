@@ -9,25 +9,27 @@ func _ready():
 		item.set_song(song)
 		item.selected.connect(on_level_selected)
 
-func _on_button_pressed():
+func _on_custom_song_button_pressed():
 	if OS.get_name() == "Web":
 		#For HTML export
 		var reader = JavaScriptFileReader.new()
 		add_child(reader)
 		var data = await reader.select_file_data()
 		var stream = WAVFileReader.load_from_data(data).result
+		GameState.current_song_id = -1 #Custom song
 		switch_to_level(stream)
 	else:
 		$FileDialog.popup_centered(Vector2(500,500))
-
-
+	
 func on_level_selected(song: SongHandler.Song):
+	GameState.current_song_id = song.get_id()
 	switch_to_level(load(song.get_stream_path()))
 
 
 func _on_file_dialog_file_selected(path):
 	#For local export
 	var stream = WAVFileReader.load(path).result
+	GameState.current_song_id = -1 #Custom song
 	switch_to_level(stream)
 	
 
@@ -38,3 +40,6 @@ func switch_to_level(stream: AudioStream):
 
 func _on_back_button_pressed():
 	FadeTransition.change_scene("res://scenes/main_menu.tscn")
+
+
+

@@ -7,7 +7,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qudcg"]
 
-[node name="ScrollPlayerItem" type="Panel"]
+[node name="ScrollCharacterItem" type="Panel"]
 custom_minimum_size = Vector2(150, 150)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qudcg")
 script = ExtResource("1_npnlh")

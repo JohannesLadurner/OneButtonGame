@@ -21,6 +21,7 @@ GameState="*res://game_state.gd"
 CharacterHandler="*res://addons/character_handler.gd"
 SongHandler="*res://addons/song_handler.gd"
 FadeTransition="*res://transitions/fade_transition.tscn"
+AchievementHandler="*res://addons/achievement_handler.gd"
 
 [input]
 
