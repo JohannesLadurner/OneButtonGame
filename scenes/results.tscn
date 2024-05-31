@@ -128,6 +128,16 @@ position = Vector2(0, 115)
 [node name="BackButtonPosition" type="Node2D" parent="Positions"]
 position = Vector2(500, 550)
 
+[node name="NewHighscore" type="Label" parent="."]
+visible = false
+offset_left = 471.966
+offset_top = 81.6611
+offset_right = 640.966
+offset_bottom = 130.661
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 35
+text = "New Best!"
+
 [node name="Achievement" type="Panel" parent="."]
 offset_left = 200.0
 offset_top = -125.0

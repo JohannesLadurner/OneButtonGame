@@ -10,6 +10,7 @@ extends Node2D
 @onready var miss_label = $Percentages/MissPercentageTitle/MissPercentage
 @onready var score_label = $Score
 @onready var back_button = $BackButton
+@onready var new_highscore_label = $NewHighscore
 
 @onready var achievement_start_position = $Positions/AchievementStartPosition.position
 @onready var achievement_end_position = $Positions/AchievementEndPosition.position
@@ -23,6 +24,7 @@ var perfect_percentage
 var good_percentage
 var miss_percentage
 var achievements
+var new_highscore = false
 
 func _ready():
 	score_total = AchievementHandler.calculate_total_score()
@@ -31,6 +33,10 @@ func _ready():
 	miss_percentage = AchievementHandler.calculate_percentage_of_reward_type(Gameplay.Reward.MISS)
 	
 	achievements = AchievementHandler.update_achievements()
+	var highscores = GameState.get_highscores(GameState.current_song_id)
+	if score_total > highscores.get_score(GameState.gameplay_properties.get_difficulty()):
+		highscores.set_score(score_total, GameState.gameplay_properties.get_difficulty())
+		new_highscore = true
 	nodes_animation()
 
 func nodes_animation():
@@ -44,6 +50,10 @@ func nodes_animation():
 		var score_tween = get_tree().create_tween()
 		score_tween.tween_method(func(num): score_label.text = str("Score: ", num), 0, score_total, duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 		score_tween.tween_callback(func():
+			if new_highscore:
+				new_highscore_label.visible = true
+				new_highscore_label.scale = Vector2(3,3)
+				get_tree().create_tween().tween_property(new_highscore_label, "scale", Vector2(1,1), 1)
 			#Percentages fly in
 			var percentages_tween = get_tree().create_tween()
 			percentages_tween.tween_property(percentages_node, "position", percentages_position, fly_in_duration).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)

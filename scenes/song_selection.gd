@@ -4,12 +4,7 @@ extends Node2D
 @onready var difficulty_label = $DifficultyPanel/Difficulty
 
 func _ready():
-	difficulty_label.text = Gameplay.Difficulty.keys()[GameState.gameplay_properties.get_difficulty()]
-	for song in SongHandler.get_all_songs():
-		var item = load("res://scenes/scroll_item_level.tscn").instantiate()
-		container.add_child(item)
-		item.set_song(song)
-		item.selected.connect(on_level_selected)
+	_set_difficulty(GameState.gameplay_properties.get_difficulty())
 
 func _on_custom_song_button_pressed():
 	if OS.get_name() == "Web":
@@ -43,7 +38,6 @@ func _on_easier_button_pressed():
 	var difficulty = GameState.gameplay_properties.get_difficulty()
 	_set_difficulty(difficulty - 1)
 
-
 func _on_harder_button_pressed():
 	var difficulty = GameState.gameplay_properties.get_difficulty()
 	_set_difficulty(difficulty + 1)
@@ -52,9 +46,16 @@ func _set_difficulty(difficulty: Gameplay.Difficulty):
 	if difficulty >= 0 and difficulty < Gameplay.Difficulty.size():
 		GameState.gameplay_properties.set_difficulty(difficulty)
 		difficulty_label.text = Gameplay.Difficulty.keys()[difficulty]
+		_set_song_list()
+		
+func _set_song_list():
+	for child in container.get_children():
+		child.queue_free()
+	for song in SongHandler.get_all_songs():
+		var item = load("res://scenes/scroll_item_level.tscn").instantiate()
+		container.add_child(item)
+		item.set_song(song)
+		item.selected.connect(on_level_selected)
 
 func _on_back_button_pressed():
 	FadeTransition.change_scene("res://scenes/main_menu.tscn")
-
-
-

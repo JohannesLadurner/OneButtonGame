@@ -15,8 +15,22 @@ layout_mode = 0
 offset_left = 17.0
 offset_top = 11.0
 offset_right = 401.0
-offset_bottom = 76.0
+offset_bottom = 67.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Some song title"
+autowrap_mode = 2
+
+[node name="Highscore" type="Label" parent="."]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 63.0
+offset_right = 401.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+text = "Highscore: 0"
+autowrap_mode = 2
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 0
