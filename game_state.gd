@@ -9,5 +9,5 @@ var gameplay_properties: Gameplay.Properties = Gameplay.Properties.new()
 
 #Stuff to persist
 var unlocked_song_ids: Array
-var unlocked_character_ids: Array
+var unlocked_character_ids: Array = [0]
 var selected_character_id: int

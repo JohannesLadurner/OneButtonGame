@@ -1,7 +1,7 @@
 extends Node
 
 var _all_character_unlockables = [
-	CharacterUnlock.new(1, "Reach a minimum score of 1000 in Song 1 in EASY mode")
+	CharacterUnlock.new(1, "Reach a minimum score of 1000 in Song 2 in EASY mode")
 ]
 
 func get_character_unlockable(character_id: int):
