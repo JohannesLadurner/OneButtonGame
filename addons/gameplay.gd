@@ -21,6 +21,7 @@ class Properties:
 		set_difficulty(Difficulty.EASY)
 	
 	func set_difficulty(difficulty: Difficulty):
+		self._difficulty = difficulty
 		match difficulty:
 			Difficulty.EASY:
 				self._max_height = 250
@@ -34,4 +35,3 @@ class Properties:
 				self._max_height = 500
 				self._speed_range = range(5, 15)
 				self._samples_per_second = 30
-				

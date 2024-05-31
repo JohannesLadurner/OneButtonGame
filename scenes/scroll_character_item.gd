@@ -13,7 +13,6 @@ func set_character(character: CharacterHandler.Character):
 	else:
 		$Sprite2D.texture = null #Replace with locked icon
 		$Button.disabled = true
-		$Button.focus_mode = FOCUS_NONE
 
 	$Label.text = character.get_name()
 

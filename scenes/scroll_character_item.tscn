@@ -16,11 +16,11 @@ script = ExtResource("1_npnlh")
 layout_mode = 0
 offset_right = 150.0
 offset_bottom = 150.0
+focus_mode = 0
 theme_override_styles/normal = ExtResource("2_u1akw")
 theme_override_styles/hover = ExtResource("3_23e18")
 theme_override_styles/pressed = ExtResource("3_23e18")
 theme_override_styles/disabled = ExtResource("2_u1akw")
-theme_override_styles/focus = ExtResource("3_23e18")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(75, 65)

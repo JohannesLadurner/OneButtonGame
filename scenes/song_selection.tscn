@@ -18,6 +18,7 @@ offset_left = 945.0
 offset_top = 526.0
 offset_right = 1095.0
 offset_bottom = 608.0
+focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
@@ -25,7 +26,6 @@ theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = ExtResource("4_bbyet")
 theme_override_styles/hover = ExtResource("5_ao54e")
 theme_override_styles/pressed = ExtResource("5_ao54e")
-theme_override_styles/focus = ExtResource("5_ao54e")
 text = "Custom Song
 "
 
@@ -39,9 +39,9 @@ filters = PackedStringArray("*.wav")
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(500, 400)
 offset_left = 376.0
-offset_top = 54.0
+offset_top = 140.0
 offset_right = 876.0
-offset_bottom = 576.0
+offset_bottom = 587.0
 theme_override_styles/panel = ExtResource("6_88qnf")
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
@@ -61,13 +61,79 @@ offset_left = 18.0
 offset_top = 17.0
 offset_right = 168.0
 offset_bottom = 77.0
+focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = ExtResource("4_bbyet")
 theme_override_styles/hover = ExtResource("5_ao54e")
 theme_override_styles/pressed = ExtResource("5_ao54e")
-theme_override_styles/focus = ExtResource("5_ao54e")
 text = "Back"
+
+[node name="DifficultyPanel" type="Panel" parent="."]
+offset_left = 463.0
+offset_top = 19.0
+offset_right = 792.0
+offset_bottom = 119.0
+theme_override_styles/panel = ExtResource("6_88qnf")
+
+[node name="Title" type="Label" parent="DifficultyPanel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 323.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 20
+text = "Difficulty"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Difficulty" type="Label" parent="DifficultyPanel"]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 32.0
+offset_right = 244.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 25
+text = "MEDIUM
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EasierButton" type="Button" parent="DifficultyPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 45.0
+offset_right = 83.0
+offset_bottom = 88.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("4_bbyet")
+theme_override_styles/hover = ExtResource("5_ao54e")
+theme_override_styles/pressed = ExtResource("5_ao54e")
+text = "◄"
+
+[node name="HarderButton" type="Button" parent="DifficultyPanel"]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 45.0
+offset_right = 309.0
+offset_bottom = 88.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = ExtResource("4_bbyet")
+theme_override_styles/hover = ExtResource("5_ao54e")
+theme_override_styles/pressed = ExtResource("5_ao54e")
+text = "►"
+
+[node name="Line2D" type="Line2D" parent="DifficultyPanel"]
+position = Vector2(0, 10)
+points = PackedVector2Array(4, 25, 325, 25)
+width = 5.0
+default_color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="CustomSongButton" to="." method="_on_custom_song_button_pressed"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="DifficultyPanel/EasierButton" to="." method="_on_easier_button_pressed"]
+[connection signal="pressed" from="DifficultyPanel/HarderButton" to="." method="_on_harder_button_pressed"]
