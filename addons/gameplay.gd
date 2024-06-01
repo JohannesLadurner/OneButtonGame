@@ -29,9 +29,9 @@ class Properties:
 				self._samples_per_second = 30
 			Difficulty.MEDIUM:
 				self._max_height = 350
-				self._speed_range = range(2, 10)
+				self._speed_range = range(1, 10)
 				self._samples_per_second = 30
 			Difficulty.HARD:
 				self._max_height = 500
-				self._speed_range = range(5, 15)
+				self._speed_range = range(1, 15)
 				self._samples_per_second = 30
