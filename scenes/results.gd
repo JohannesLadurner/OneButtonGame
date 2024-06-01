@@ -33,10 +33,11 @@ func _ready():
 	miss_percentage = AchievementHandler.calculate_percentage_of_reward_type(Gameplay.Reward.MISS)
 	
 	achievements = AchievementHandler.update_achievements()
-	var highscores = GameState.get_highscores(GameState.current_song_id)
-	if score_total > highscores.get_score(GameState.gameplay_properties.get_difficulty()):
-		highscores.set_score(score_total, GameState.gameplay_properties.get_difficulty())
-		new_highscore = true
+	if GameState.current_song_id >= 0: #No custom song
+		var highscores = GameState.get_highscores(GameState.current_song_id)
+		if highscores != null and score_total > highscores.get_score(GameState.gameplay_properties.get_difficulty()):
+			highscores.set_score(score_total, GameState.gameplay_properties.get_difficulty())
+			new_highscore = true
 	nodes_animation()
 
 func nodes_animation():
