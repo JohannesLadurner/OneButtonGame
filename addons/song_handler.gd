@@ -1,8 +1,10 @@
 extends Node
 
 var _all_songs = [
-	Song.new(0, "res://assets/songs/Jetta-I_d-Love-to-Change-the-World-_Matstubs-Remix_.wav", "Jetta - I'd Love To Change The World"),
-	Song.new(1, "res://assets/songs/maldita.wav", "I hate this")
+	Song.new(0, "res://assets/songs/Isotope - Dj Jart.wav", "Isotope - Dj Jart"),
+	Song.new(1, "res://assets/songs/Tera - Xomu.wav", "Tera - Xomu"),
+	Song.new(2, "res://assets/songs/What I Thought Was Love - Roman Novelrain, Toryn, NikiNovok.wav", "What I Thought Was Love - Roman Novelrain, Toryn, NikiNovok")
+	
 ]
 
 func get_all_songs() -> Array:
