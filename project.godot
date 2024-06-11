@@ -22,6 +22,7 @@ CharacterHandler="*res://addons/character_handler.gd"
 SongHandler="*res://addons/song_handler.gd"
 FadeTransition="*res://transitions/fade_transition.tscn"
 AchievementHandler="*res://addons/achievement_handler.gd"
+BackgroundMusic="*res://scenes/background_music.tscn"
 
 [input]
 

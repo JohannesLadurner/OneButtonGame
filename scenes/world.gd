@@ -19,6 +19,7 @@ var data_index = 0
 var finished = false
 
 func _ready():
+	BackgroundMusic.stop()
 	$AudioStreamPlayer.stream = GameState.current_stream
 	var heights = AudioToWaveform.generate($AudioStreamPlayer.stream, GameState.gameplay_properties.get_samples_per_second(), GameState.gameplay_properties.get_max_height())
 	data_points = _generate_data_points(heights)

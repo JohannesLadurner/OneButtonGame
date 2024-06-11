@@ -27,6 +27,7 @@ var achievements
 var new_highscore = false
 
 func _ready():
+	BackgroundMusic.play()
 	score_total = AchievementHandler.calculate_total_score()
 	perfect_percentage = AchievementHandler.calculate_percentage_of_reward_type(Gameplay.Reward.PERFECT)
 	good_percentage = AchievementHandler.calculate_percentage_of_reward_type(Gameplay.Reward.GOOD)
