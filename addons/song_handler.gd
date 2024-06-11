@@ -2,8 +2,9 @@ extends Node
 
 var _all_songs = [
 	Song.new(0, "res://assets/songs/Isotope - Dj Jart.wav", "Isotope - Dj Jart"),
-	Song.new(1, "res://assets/songs/Tera - Xomu.wav", "Tera - Xomu"),
-	Song.new(2, "res://assets/songs/What I Thought Was Love - Roman Novelrain, Toryn, NikiNovok.wav", "What I Thought Was Love - Roman Novelrain, Toryn, NikiNovok")
+	Song.new(1, "res://assets/songs/Divinity - Raal.wav", "Divinity - Raal"),
+	Song.new(2, "res://assets/songs/Tera - Xomu.wav", "Tera - Xomu"),
+	Song.new(3, "res://assets/songs/What I Thought Was Love - Roman Novelrain, Toryn, NikiNovok.wav", "What I Thought Was Love - Roman Novelrain, Toryn, NikiNovok")
 ]
 
 func get_all_songs() -> Array:
@@ -22,4 +23,3 @@ class Song:
 		self._id = id
 		self._stream_path = stream_path
 		self._title = title
-		

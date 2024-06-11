@@ -18,17 +18,17 @@ class Properties:
 	func get_samples_per_second() -> int: return self._samples_per_second
 	
 	func _init():
-		set_difficulty(Difficulty.EASY)
+		set_difficulty(Difficulty.MEDIUM)
 	
 	func set_difficulty(difficulty: Difficulty):
 		self._difficulty = difficulty
 		match difficulty:
 			Difficulty.EASY:
-				self._max_height = 250
+				self._max_height = 300
 				self._speed_range = range(1, 5)
 				self._samples_per_second = 30
 			Difficulty.MEDIUM:
-				self._max_height = 350
+				self._max_height = 400
 				self._speed_range = range(1, 10)
 				self._samples_per_second = 30
 			Difficulty.HARD:
