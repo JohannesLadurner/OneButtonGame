@@ -1,27 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5e66h1lmbkyg"]
+[gd_scene load_steps=6 format=3 uid="uid://b5e66h1lmbkyg"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_256xi"]
 [ext_resource type="Texture2D" uid="uid://bxwxjk381b4ir" path="res://icon.svg" id="2_g3lia"]
 [ext_resource type="PackedScene" uid="uid://dvrjb7ialos74" path="res://player.tscn" id="2_k83xy"]
 [ext_resource type="PackedScene" uid="uid://bdgkvmwm3jks1" path="res://scenes/background.tscn" id="3_lfc8w"]
+[ext_resource type="PackedScene" uid="uid://bsfb3tg1noxwd" path="res://scenes/pause_menu.tscn" id="5_2dl01"]
 
 [node name="World" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_256xi")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 autoplay = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 324)
-
-[node name="Label" type="Label" parent="Camera2D"]
-z_index = -1
-offset_left = -576.0
-offset_top = -324.0
-offset_right = -515.0
-offset_bottom = -301.0
-theme_override_font_sizes/font_size = 25
-text = "Score: 0"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -43,5 +33,24 @@ render_target_update_mode = 4
 
 [node name="Player" parent="." instance=ExtResource("2_k83xy")]
 position = Vector2(575, 324)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="Label" type="Label" parent="Camera2D"]
+z_index = -1
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -515.0
+offset_bottom = -301.0
+theme_override_font_sizes/font_size = 25
+text = "Score: 0"
+
+[node name="PauseMenu" parent="Camera2D" instance=ExtResource("5_2dl01")]
+visible = false
+offset_left = -309.0
+offset_top = -205.0
+offset_right = 319.0
+offset_bottom = 209.0
 
 [connection signal="draw" from="WaveClearedViewportContainer" to="." method="_on_wave_cleared_viewport_container_draw"]

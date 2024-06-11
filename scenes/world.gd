@@ -43,8 +43,8 @@ func _process(delta):
 	#$Sprite2D.position = $Camera2D.position
 	
 	#Logic for varying speed based on music intensity. Idea: Progress of music is 75% -> progress of data points must also be 75%
-	var music_pos = $AudioStreamPlayer.get_playback_position()/music_length #Calculate current progress of the music
-	data_index = ceil(data_points.size() * music_pos) #Apply that progress to the data points
+	var music_progress = $AudioStreamPlayer.get_playback_position()/music_length #Calculate current progress of the music
+	data_index = ceil(data_points.size() * music_progress) #Apply that progress to the data points
 	
 	if data_index >= data_points.size(): #Reached end of song
 		GameState.current_rewards = reward_history
@@ -62,7 +62,11 @@ func _process(delta):
 		score += reward
 		reward_history[data_index] = reward
 	updateScore(score)
-
+	
+func _input(event):
+	if event.is_action_pressed("pause"):
+		get_tree().paused = true
+		$Camera2D/PauseMenu.show()
 
 func _update_positions(position: int):
 	$Camera2D.position.x = position + camera_offset

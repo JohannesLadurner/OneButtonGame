@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsfb3tg1noxwd"]
+
+[ext_resource type="StyleBox" uid="uid://c608m56ocsogw" path="res://styles/scroll_container.tres" id="1_0gmkh"]
+[ext_resource type="StyleBox" uid="uid://dl0xufa2op3rl" path="res://styles/button_normal.tres" id="2_nx2s2"]
+[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="2_rn51m"]
+[ext_resource type="StyleBox" uid="uid://cq3kge22ppogc" path="res://styles/button_focused.tres" id="3_j1fiq"]
+
+[node name="PauseMenu" type="Panel"]
+process_mode = 2
+offset_left = 267.0
+offset_top = 119.0
+offset_right = 895.0
+offset_bottom = 533.0
+theme_override_styles/panel = ExtResource("1_0gmkh")
+script = ExtResource("2_rn51m")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_top = 19.0
+offset_right = 70.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+
+[node name="Warning" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_top = 364.0
+offset_right = 625.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 20
+text = "Warning: All current progress will be lost!"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -6.0
+offset_right = 75.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("2_nx2s2")
+theme_override_styles/hover = ExtResource("3_j1fiq")
+theme_override_styles/pressed = ExtResource("3_j1fiq")
+text = "Resume"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = 76.0
+offset_right = 75.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("2_nx2s2")
+theme_override_styles/hover = ExtResource("3_j1fiq")
+theme_override_styles/pressed = ExtResource("3_j1fiq")
+text = "Back to Menu"
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
