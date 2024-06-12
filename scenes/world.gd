@@ -60,9 +60,9 @@ func _process(delta):
 	if reward != Gameplay.Reward.UNKNOWN and reward_history[data_index] == null: 
 		score += reward
 		reward_history[data_index] = reward
-	updateScore(score)
 	$WaveClearedViewportContainer.position.x = pos_x - $WaveClearedViewportContainer.size.x - 5
 	$WaveClearedViewportContainer.queue_redraw()
+	updateHUD()
 	
 func _input(event):
 	if event.is_action_pressed("pause"):
@@ -142,6 +142,6 @@ func _generate_data_points(heights: Array):
 		data_points.push_back(data_point)
 	return data_points
 
-func updateScore(score):
-	var txt = "Score: %s" %score
-	$Camera2D/Label.text = txt
+func updateHUD():
+	$Camera2D/Label.text = "Score: %s" %score
+	$Camera2D/ProgressBar.value = ($AudioStreamPlayer.get_playback_position()/music_length) * 100.0

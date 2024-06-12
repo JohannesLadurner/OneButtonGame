@@ -1,10 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5e66h1lmbkyg"]
+[gd_scene load_steps=8 format=3 uid="uid://b5e66h1lmbkyg"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_256xi"]
 [ext_resource type="Texture2D" uid="uid://bxwxjk381b4ir" path="res://icon.svg" id="2_g3lia"]
 [ext_resource type="PackedScene" uid="uid://dvrjb7ialos74" path="res://player.tscn" id="2_k83xy"]
 [ext_resource type="PackedScene" uid="uid://bdgkvmwm3jks1" path="res://scenes/background.tscn" id="3_lfc8w"]
 [ext_resource type="PackedScene" uid="uid://bsfb3tg1noxwd" path="res://scenes/pause_menu.tscn" id="5_2dl01"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5jsh"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2u4g2"]
+bg_color = Color(0.027451, 0.396078, 0.803922, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
 
 [node name="World" type="Node2D"]
 process_mode = 1
@@ -15,8 +30,8 @@ autoplay = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(575.5, 325.577)
-scale = Vector2(0.0390623, 5.03786)
+position = Vector2(575.5, 344.5)
+scale = Vector2(0.0390623, 4.74219)
 texture = ExtResource("2_g3lia")
 
 [node name="Background" parent="." instance=ExtResource("3_lfc8w")]
@@ -37,13 +52,21 @@ position = Vector2(575, 324)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
 
+[node name="ProgressBar" type="ProgressBar" parent="Camera2D"]
+offset_left = -254.0
+offset_top = -312.0
+offset_right = 263.0
+offset_bottom = -285.0
+theme_override_styles/background = SubResource("StyleBoxFlat_h5jsh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2u4g2")
+
 [node name="Label" type="Label" parent="Camera2D"]
 z_index = -1
-offset_left = -576.0
-offset_top = -324.0
-offset_right = -515.0
-offset_bottom = -301.0
-theme_override_font_sizes/font_size = 25
+offset_left = -560.0
+offset_top = -321.0
+offset_right = -447.0
+offset_bottom = -279.0
+theme_override_font_sizes/font_size = 30
 text = "Score: 0"
 
 [node name="PauseMenu" parent="Camera2D" instance=ExtResource("5_2dl01")]
