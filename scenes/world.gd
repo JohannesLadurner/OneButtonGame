@@ -56,13 +56,13 @@ func _process(delta):
 	var pos_x = data_points[data_index].x #Take the x pos from the data point
 	_update_positions(pos_x)
 	data_points[data_index].player_distance = abs($Player.position.y - data_points[data_index].y)
-	$WaveClearedViewportContainer.position.x = pos_x - $WaveClearedViewportContainer.size.x - 5
-	$WaveClearedViewportContainer.queue_redraw()
 	var reward = _player_distance_to_reward(data_points[data_index].player_distance)
-	if reward != Gameplay.Reward.UNKNOWN: 
+	if reward != Gameplay.Reward.UNKNOWN and reward_history[data_index] == null: 
 		score += reward
 		reward_history[data_index] = reward
 	updateScore(score)
+	$WaveClearedViewportContainer.position.x = pos_x - $WaveClearedViewportContainer.size.x - 5
+	$WaveClearedViewportContainer.queue_redraw()
 	
 func _input(event):
 	if event.is_action_pressed("pause"):
@@ -97,10 +97,10 @@ func _on_wave_cleared_viewport_container_draw():
 		#If there is no data available, take last datapoint as a reference
 		if reward == Gameplay.Reward.UNKNOWN and index > 0:
 			data_points[index].player_distance = data_points[index-1].player_distance
-			if reward == Gameplay.Reward.UNKNOWN: 
+			reward = _player_distance_to_reward(data_points[index].player_distance)
+			if reward != Gameplay.Reward.UNKNOWN:
 				score += reward
 				reward_history[index] = reward
-			reward = _player_distance_to_reward(data_points[index].player_distance)
 		match reward:
 			Gameplay.Reward.UNKNOWN: color = Color.WHITE #No data available
 			Gameplay.Reward.MISS: color = Color.RED
