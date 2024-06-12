@@ -1,7 +1,8 @@
 extends Node
 
 var _all_character_unlockables = [
-	CharacterUnlock.new(1, "Reach a minimum score of 10000 in Tera - Xomu in EASY mode")
+	CharacterUnlock.new(1, "Reach a minimum score of 10000 in Tera - Xomu in EASY mode"),
+	CharacterUnlock.new(2, "Reach a minimum score of 15000 in Isotope - Dj Jart in HARD mode")
 ]
 
 func get_character_unlockable(character_id: int):
@@ -41,12 +42,22 @@ func update_achievements() -> Array:
 	var score = calculate_total_score()
 		
 	#Unlock Character with id 1
-	if song_id == 0 and score >= 10000 and difficulty == Gameplay.Difficulty.EASY and not GameState.unlocked_character_ids.has(1):
-			GameState.unlocked_character_ids.push_back(1)
-			unlocks.push_back(get_character_unlockable(1))
+	if song_id == 0 and score >= 10000 and difficulty == Gameplay.Difficulty.EASY:
+			var unlock = _unlock_character(1)
+			if unlock != null: unlocks.push_back(unlock)
+	#Unlock Character with id 2
+	if song_id == 2 and score >= 15000 and difficulty == Gameplay.Difficulty.HARD:
+			var unlock = _unlock_character(2)
+			if unlock != null: unlocks.push_back(unlock)
 	#...
 	
 	return unlocks
+
+func _unlock_character(id: int) -> CharacterUnlock:
+	if not GameState.unlocked_character_ids.has(id):
+		GameState.unlocked_character_ids.push_back(id)
+		return get_character_unlockable(id)
+	return null
 
 func _calculate_percentage(numerator, denominator) -> float:
 	var dec_digits = 2

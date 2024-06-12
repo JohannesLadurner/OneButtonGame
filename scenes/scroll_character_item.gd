@@ -11,7 +11,7 @@ func set_character(character: CharacterHandler.Character):
 	if _unlocked:
 		$Sprite2D.texture = load(character.get_texture_path())
 	else:
-		$Sprite2D.texture = null #Replace with locked icon
+		$Sprite2D.texture = load("res://assets/characters/LOCKED.png")
 		$Button.disabled = true
 
 	$Label.text = character.get_name()
