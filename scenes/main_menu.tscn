@@ -49,5 +49,19 @@ position = Vector2(25, 25)
 scale = Vector2(0.378292, 0.378292)
 texture = ExtResource("7_3pc8p")
 
+[node name="CharacterSelectionHint" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="CharacterSelectionHint"]
+points = PackedVector2Array(562, 160, 591, 104, 766, 104)
+width = 1.0
+
+[node name="Label" type="Label" parent="CharacterSelectionHint"]
+offset_left = 593.0
+offset_top = 87.0
+offset_right = 820.0
+offset_bottom = 110.0
+theme_override_font_sizes/font_size = 12
+text = "Click me to change character!"
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="SelectCharacterButton" to="." method="_on_select_character_button_pressed"]
