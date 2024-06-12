@@ -110,7 +110,7 @@ theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = ExtResource("4_bbyet")
 theme_override_styles/hover = ExtResource("5_ao54e")
 theme_override_styles/pressed = ExtResource("5_ao54e")
-text = "◄"
+text = "<"
 
 [node name="HarderButton" type="Button" parent="DifficultyPanel"]
 layout_mode = 0
@@ -124,7 +124,7 @@ theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = ExtResource("4_bbyet")
 theme_override_styles/hover = ExtResource("5_ao54e")
 theme_override_styles/pressed = ExtResource("5_ao54e")
-text = "►"
+text = ">"
 
 [node name="Line2D" type="Line2D" parent="DifficultyPanel"]
 position = Vector2(0, 10)

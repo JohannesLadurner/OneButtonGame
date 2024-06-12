@@ -1,7 +1,7 @@
 extends Node
 
 var _all_character_unlockables = [
-	CharacterUnlock.new(1, "Reach a minimum score of 1000 in Song 2 in EASY mode")
+	CharacterUnlock.new(1, "Reach a minimum score of 10000 in Tera - Xomu in EASY mode")
 ]
 
 func get_character_unlockable(character_id: int):
@@ -41,7 +41,7 @@ func update_achievements() -> Array:
 	var score = calculate_total_score()
 		
 	#Unlock Character with id 1
-	if song_id == 1 and score >= 1000 and difficulty == Gameplay.Difficulty.EASY and not GameState.unlocked_character_ids.has(1):
+	if song_id == 0 and score >= 10000 and difficulty == Gameplay.Difficulty.EASY and not GameState.unlocked_character_ids.has(1):
 			GameState.unlocked_character_ids.push_back(1)
 			unlocks.push_back(get_character_unlockable(1))
 	#...

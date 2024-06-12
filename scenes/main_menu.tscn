@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dpl2sibgihrpb" path="res://assets/logo.png" id="3_ckrsj"]
 [ext_resource type="StyleBox" uid="uid://dl0xufa2op3rl" path="res://styles/button_normal.tres" id="5_55yx1"]
 [ext_resource type="StyleBox" uid="uid://cq3kge22ppogc" path="res://styles/button_focused.tres" id="6_h0ffk"]
-[ext_resource type="Texture2D" uid="uid://bxwxjk381b4ir" path="res://icon.svg" id="7_3pc8p"]
+[ext_resource type="Texture2D" uid="uid://b0vvbbh4rnhqv" path="res://assets/characters/UFO_orange.png" id="7_7j5bx"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_ysdqt")
@@ -45,9 +45,9 @@ text = "foc"
 flat = true
 
 [node name="Character" type="Sprite2D" parent="SelectCharacterButton"]
-position = Vector2(25, 25)
-scale = Vector2(0.378292, 0.378292)
-texture = ExtResource("7_3pc8p")
+position = Vector2(23, 23)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_7j5bx")
 
 [node name="CharacterSelectionHint" type="Node2D" parent="."]
 
