@@ -2,7 +2,11 @@ extends Node
 
 var _all_character_unlockables = [
 	CharacterUnlock.new(1, "Reach a minimum score of 10000 in Tera - Xomu in EASY mode"),
-	CharacterUnlock.new(2, "Reach a minimum score of 15000 in Isotope - Dj Jart in HARD mode")
+	CharacterUnlock.new(2, "Reach a minimum score of 15000 in Isotope - Dj Jart in MEDIUM mode"),
+	CharacterUnlock.new(3, "Reach a minimum score of 15000 in Isotope - Dj Jart in HARD mode"),
+	CharacterUnlock.new(4, "Reach a minimum score of 10000 in Divinity - Raal in EASY mode"),
+	CharacterUnlock.new(5, "Reach a minimum score of 15000 in Divinity - Raal in MEDIUM mode"),
+	CharacterUnlock.new(6, "Reach a minimum score of 15000 in Divinity - Raal in HARD mode")
 ]
 
 func get_character_unlockable(character_id: int):
@@ -46,11 +50,26 @@ func update_achievements() -> Array:
 			var unlock = _unlock_character(1)
 			if unlock != null: unlocks.push_back(unlock)
 	#Unlock Character with id 2
-	if song_id == 2 and score >= 15000 and difficulty == Gameplay.Difficulty.HARD:
+	if song_id == 2 and score >= 15000 and difficulty == Gameplay.Difficulty.MEDIUM:
 			var unlock = _unlock_character(2)
 			if unlock != null: unlocks.push_back(unlock)
 	#...
+	if song_id == 2 and score >= 15000 and difficulty == Gameplay.Difficulty.HARD:
+		var unlock = _unlock_character(3)
+		if unlock != null: unlocks.push_back(unlock)
 	
+	if song_id == 1 and score >= 10000 and difficulty == Gameplay.Difficulty.EASY:
+		var unlock = _unlock_character(4)
+		if unlock != null: unlocks.push_back(unlock)
+	
+	if song_id == 1 and score >= 15000 and difficulty == Gameplay.Difficulty.MEDIUM:
+		var unlock = _unlock_character(5)
+		if unlock != null: unlocks.push_back(unlock)
+	
+	if song_id == 1 and score >= 15000 and difficulty == Gameplay.Difficulty.HARD:
+		var unlock = _unlock_character(6)
+		if unlock != null: unlocks.push_back(unlock)
+		
 	return unlocks
 
 func _unlock_character(id: int) -> CharacterUnlock:

@@ -3,7 +3,10 @@ extends Node
 var _all_characters = [
 	Character.new(0, "res://assets/characters/UFO_orange.png", "UFO Orange"),
 	Character.new(1, "res://assets/characters/UFO_lila.png", "UFO Purple"),
-	Character.new(2, "res://assets/characters/ROCKET_grey.png", "Rocket")
+	Character.new(2, "res://assets/characters/ROCKET_grey.png", "Rocket Grey"),
+	Character.new(3, "res://assets/characters/ROCKET_yellow.png", "Rocket Yellow"),
+	Character.new(4, "res://assets/characters/SUN.png", "Sun"),
+	Character.new(5, "res://assets/characters/MOON.png", "Moon"),
 ]
 
 func get_character(id: int) -> Character:
